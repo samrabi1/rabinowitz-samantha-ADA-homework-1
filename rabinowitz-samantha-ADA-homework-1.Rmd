@@ -20,7 +20,7 @@ quote <- ("There is grandeur in this view of life, with its several powers, havi
 quote
 ```
 
-The following will split the string of characters in the vector called **quote** into individual words while also removing any punctuation contained in the vector
+The following will split the string of characters in the vector called **quote** into individual words while also removing any punctuation contained in the vector. Loading the {stringr} package is necessary here.
 ```{R}
 library(stringr)
 split_quote <- str_split((gsub("[[:punct:]]","",quote)), " ")

@@ -375,7 +375,7 @@ summary {
 <pre class="r"><code>quote &lt;- (&quot;There is grandeur in this view of life, with its several powers, having been originally breathed by the Creator into a few forms or into one; and that, whilst this planet has gone circling on according to the fixed law of gravity, from so simple a beginning endless forms most beautiful and most wonderful have been, and are being evolved.&quot;)
 quote</code></pre>
 <pre><code>## [1] &quot;There is grandeur in this view of life, with its several powers, having been originally breathed by the Creator into a few forms or into one; and that, whilst this planet has gone circling on according to the fixed law of gravity, from so simple a beginning endless forms most beautiful and most wonderful have been, and are being evolved.&quot;</code></pre>
-<p>The following will split the string of characters in the vector called <strong>quote</strong> into individual words while also removing any punctuation contained in the vector</p>
+<p>The following will split the string of characters in the vector called <strong>quote</strong> into individual words while also removing any punctuation contained in the vector. Loading the {stringr} package is necessary here.</p>
 <pre class="r"><code>library(stringr)
 split_quote &lt;- str_split((gsub(&quot;[[:punct:]]&quot;,&quot;&quot;,quote)), &quot; &quot;)
 split_quote</code></pre>
