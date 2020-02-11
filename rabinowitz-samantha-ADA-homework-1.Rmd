@@ -1,0 +1,127 @@
+---
+title: 'ADA Homework Assignment #1'
+author: "Samantha Rabinowitz"
+date: "2/11/2020"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Challenge 1
+
+The R code below will create a vector called **quote** that contains the last line of Charles Darwin's *On the Origin of Species*
+
+```{R}
+quote <- ("There is grandeur in this view of life, with its several powers, having been originally breathed by the Creator into a few forms or into one; and that, whilst this planet has gone circling on according to the fixed law of gravity, from so simple a beginning endless forms most beautiful and most wonderful have been, and are being evolved.")
+quote
+```
+
+The following will split the string of characters in the vector called **quote** into individual words while also removing any punctuation contained in the vector
+```{R}
+library(stringr)
+split_quote <- str_split((gsub("[[:punct:]]","",quote)), " ")
+split_quote
+```
+
+The following R code creates a new vector of every fourth entry from the vector contained in the list of the quote split into individual words
+```{R}
+every_fourth<-split_quote[[1]][1:15*4]
+every_fourth
+```
+
+The below code will sort the entries in the defined list in reverse alphabetical order
+```{R}
+sort(every_fourth, decreasing=TRUE)
+```
+
+## Challenge 2
+
+Creation of an 8 x 10 matrix called **m1** consisting of odd integers from 1 to 159 filled column-wise
+```{R}
+m1 <- matrix(data=seq(from=1,to=159,by=2), nrow=8, ncol=10)
+m1
+```
+
+Extraction of the element in row 5, column 2 using single-bracket notation
+```{R}
+m1[5,2]
+```
+
+Extraction of rows 5 to 7 in the matrix **m1**
+```{R}
+m1[5:7,]
+```
+
+Creation of a new variable **m2** that contains (row 3, column 4) to (row 6, column 9) of **m1** as well as the code to describe the class and mode of **m2**
+```{R}
+m1$m2 <- m1[3:6, 4:9]
+m1$m2
+class(m1$m2)
+mode(m1$m2)
+```
+
+## Challenge 3
+
+Constructs a 4-dimensional, 400-element array (5 x 5 x 4 x 4), **a**, consisting of the numbers 400 to 1 
+```{R}
+a <- array(data=400:1, dim= c(5,5,4,4))
+a
+```
+
+Extractions of varying elements of parts of **a**
+```{R}
+a[1,1,1,2]
+
+a[2,3,2,]
+
+a[1:5,1:5,3,3]
+```
+
+## Challenge 4
+
+The following creates a list of the (simplified) primate taxonomy including the taxonomic levels and names of each internal node.
+```{R}
+Lorisoidea <- list("Lorisidae", "Galagidae")
+Lorisiformes <- list(Lorisoidea)
+names(Lorisiformes)<- c("Superfamily_Lorisoidea")
+Lemuroidea <- list("Cheirogaleidae", "Lepilemuridae", "Indriidae", "Lemuridae", "Daubentoniidae")
+Lemuriformes <- list(Lemuroidea)
+names(Lemuriformes)<- c("Superfamily_Lemuroidea")
+Strepsirhini <- list(Lemuriformes, Lorisiformes)
+names(Strepsirhini) <- c("Infraorder_Lemuriformes","Infraorder_Lorisiformes")
+Cercopithecoidea <- list("Cercopithecidae")
+Hominoidea <- list("Hylobatidae", "Hominidae")
+Catarrhini <- list(Hominoidea, Cercopithecoidea)
+names(Catarrhini)<- c("Superfamily_Hominoidea","Superfamily_Cercopithecoidea")
+Ceboidea <- list("Cebidae", "Atelidae", "Pitheciidae")
+Platyrrhini <- list(Ceboidea)
+names(Platyrrhini)<-c("Superfamily_Ceboidea")
+Simiiformes <- list(Platyrrhini, Catarrhini)
+names(Simiiformes)<-c("Parvorder_Platyrrhini","Parvorder_Catarrhini")
+Tarsioidea <- list("Tarsiidae")
+Tarsiiformes <- list(Tarsioidea)
+names(Tarsiiformes)<-c("Superfamily_Tarsiodea")
+Haplorhini <- list(Tarsiiformes, Simiiformes)
+names(Haplorhini)<-c("Infraorder_Tarsiiformes","Infraorder_Simiiformes")
+Primates <- list(Strepsirhini, Haplorhini)
+names(Primates)<-c("Suborder_Strepsirhini","Suborder_Haplorhini")
+```
+
+The following uses double bracket notation to extract the New World Monkeys (Parvorder: Platyrrhini) from the list as a new variable **nwm** and lists the class and mode of the variable.
+```{R}
+Primates$nwm <- Primates[[2]][[2]][1]
+Primates$nwm
+
+class(Primates$nwm)
+
+mode(Primates$nwm)
+```
+
+The following uses $ notation to extract the tarsiers from the list
+```{R}
+Primates$Suborder_Haplorhini$Infraorder_Tarsiiformes
+```
